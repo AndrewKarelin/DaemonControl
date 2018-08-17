@@ -22,6 +22,8 @@ async def handle_command(request):
         app['status'] = get_daemon_status(daemon)
     raise web.HTTPFound('/')
 
+
+
 def get_daemon_status(name):
     prog = subprocess.Popen([name,'status'],stdout=subprocess.PIPE)
     out = str(prog.communicate(timeout=5))
@@ -30,6 +32,8 @@ def get_daemon_status(name):
     if 'Active: active' in out:
         return 'Сервис работает'
     return 'Статус неопределен'
+
+
 
 newstate = {'disable': ('', 'disabled'), 'enable': ('checked', '')}
 flag_state = 'flag.state'
