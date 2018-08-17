@@ -40,8 +40,8 @@ def main():
     syslog.openlog(logoption=syslog.LOG_PID, facility=syslog.LOG_DAEMON)
     syslog.syslog('Web server controlling daemon starting...')
 
-    # app = web.Application(middlewares=[aiohttp_debugtoolbar.middleware], )
-    app = web.Application()
+    app = web.Application(middlewares=[aiohttp_debugtoolbar.middleware], )
+    # app = web.Application()
     try:
         with open(flag_state, 'r') as f:
             command = f.readline();
@@ -54,7 +54,7 @@ def main():
     app['status'] = get_daemon_status(daemon)
 
     aiohttp_jinja2.setup(app, loader=jinja2.FileSystemLoader('templates'))
-    # aiohttp_debugtoolbar.setup(app, intercept_redirects=False)
+    aiohttp_debugtoolbar.setup(app, intercept_redirects=False)
 
     app.add_routes([web.get('/', render_page),
                     web.get('/{command}', handle_command)
@@ -63,5 +63,5 @@ def main():
     web.run_app(app, host='localhost', port=8080)
     syslog.syslog('Web server controlling daemon finish')
 
-if __name__ == 'main':
+if __name__ == '__main__':
     main()

@@ -12,7 +12,9 @@
 <input type="button" {{disabled}} value="Перезапустить" onclick="javascript:window.location='/restart'"/>
 <input type="button" {{disabled}} value="Остановить" onclick="javascript:window.location='/stop'"/>
 
-<input type="checkbox"  {{checked}} id ='cb' onclick="javascript:window.location=document.getElementById('cb').checked?'/enable':'/disable';"/><label>Включить управление</label>
+<input type="checkbox"  {{checked}} id ='cb' onclick="javascript:window.location=document.getElementById('cb').checked?'/enable':'/disable';"/>
+
+    <a onclick="javascript:window.location=document.getElementById('cb').checked?'/disable':'/enable';">Включить управление </a>
 </form>
 
 </body>
