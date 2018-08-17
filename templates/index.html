@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Daemon controller</title>
+</head>
+<body>
+<h1>{{status}}</h1>
+
+<form>
+<input type="button" {{disabled}} value="Запустить" onclick="javascript:window.location='/start'"/>
+<input type="button" {{disabled}} value="Перезапустить" onclick="javascript:window.location='/restart'"/>
+<input type="button" {{disabled}} value="Остановить" onclick="javascript:window.location='/stop'"/>
+
+<input type="checkbox"  {{checked}} id ='cb' onclick="javascript:window.location=document.getElementById('cb').checked?'/enable':'/disable';"/><label>Включить управление</label>
+</form>
+
+</body>
+</html>
