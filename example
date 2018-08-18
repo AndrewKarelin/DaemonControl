@@ -1,0 +1,24 @@
+import os.path
+import subprocess
+
+password_for_sudo = 'pass'
+
+def started_as_root():
+    if subprocess.check_output('whoami').strip() == 'root':
+        return True
+    return False
+
+def runing_with_root_privileges():
+    print 'I have the power!'
+
+def main():
+    if started_as_root():
+        print 'OK, I have root privileges. Calling the function...'
+        runing_with_root_privileges()
+    else:
+        print "I'm just a user. Need to start new process with root privileges..."
+        current_script = os.path.realpath(__file__)
+        os.system('echo %s|sudo -S python %s' % (password_for_sudo, current_script))
+
+if __name__ == '__main__':
+    main()
